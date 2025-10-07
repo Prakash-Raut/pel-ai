@@ -6,10 +6,7 @@ export const SummaryCreateInputSchema = z.object({
   fileName: z.string().min(1).max(50),
   originalFileUrl: z.url(),
   summaryText: z.string().min(1).max(1000),
-  status: z.enum(["pending", "processing", "completed", "failed"]),
   userId: z.string().min(1).max(255),
-  createdAt: z.date(),
-  updatedAt: z.date(),
 });
 
 export type SummaryCreateInput = z.infer<typeof SummaryCreateInputSchema>;

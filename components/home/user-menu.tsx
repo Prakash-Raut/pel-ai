@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,7 +25,7 @@ export default function UserMenu() {
   if (!session) {
     return (
       <Button asChild variant="outline">
-        <Link className="text-black" href="/login">
+        <Link className="text-black" href="/auth/login">
           Sign In
         </Link>
       </Button>

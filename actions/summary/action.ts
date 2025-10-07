@@ -31,12 +31,3 @@ export async function createSummaryAction(input: SummaryCreateInput) {
     }
   }
 }
-
-// usage in page.tsx
-
-// async function getSummaries() {
-//   const summaries = (await SummaryDAL.public()).listSummaries();
-//   return summaries;
-// }
-
-// const summ = await getSummaries();
