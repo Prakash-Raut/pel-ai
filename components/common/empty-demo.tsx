@@ -1,6 +1,6 @@
-import { ArrowUpRightIcon, FolderCode } from "lucide-react"
+import { ArrowUpRightIcon, FolderCode } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -8,7 +8,8 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty"
+} from "@/components/ui/empty";
+import Link from "next/link";
 
 export function EmptyDemo() {
   return (
@@ -35,10 +36,10 @@ export function EmptyDemo() {
         className="text-muted-foreground"
         size="sm"
       >
-        <a href="#">
+        <Link href="/upload">
           Learn More <ArrowUpRightIcon />
-        </a>
+        </Link>
       </Button>
     </Empty>
-  )
+  );
 }

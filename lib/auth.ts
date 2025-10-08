@@ -15,7 +15,7 @@ export const auth = betterAuth({
       verification,
       payments,
       pdfSummaries,
-    }
+    },
   }),
   emailAndPassword: {
     enabled: true,

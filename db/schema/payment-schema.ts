@@ -1,7 +1,11 @@
 import { integer, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { user } from "./auth-schema";
 
-export const paymentStatus = pgEnum("payment_status", ["pending", "paid", "failed"]);
+export const paymentStatus = pgEnum("payment_status", [
+  "pending",
+  "paid",
+  "failed",
+]);
 
 export const payments = pgTable("payments", {
   id: text("id").primaryKey(),

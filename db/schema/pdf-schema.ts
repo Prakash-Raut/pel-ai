@@ -2,7 +2,12 @@ import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { nanoid } from "nanoid";
 import { user } from "./auth-schema";
 
-export const pdfStatus = pgEnum("pdf_status", ["pending", "processing", "completed", "failed"]);
+export const pdfStatus = pgEnum("pdf_status", [
+  "pending",
+  "processing",
+  "completed",
+  "failed",
+]);
 
 export const pdfSummaries = pgTable("pdf_summaries", {
   id: text("id").primaryKey().default(nanoid()),
@@ -15,5 +20,10 @@ export const pdfSummaries = pgTable("pdf_summaries", {
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().$onUpdate(() => new Date()).notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
 });
+
+export type Summary = typeof pdfSummaries.$inferSelect;
