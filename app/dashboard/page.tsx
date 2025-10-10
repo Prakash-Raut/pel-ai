@@ -1,7 +1,7 @@
 import { getAllSummaries } from "@/actions/summary";
 import { EmptyDemo } from "@/components/common/empty-demo";
 import Header from "@/components/dashboard/header";
-import { SummaryCardNew } from "@/components/summary/summary-card";
+import { SummaryCard } from "@/components/summary/summary-card";
 
 export default async function Home() {
   const summaries = await getAllSummaries();
@@ -14,7 +14,7 @@ export default async function Home() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             {summaries.map((summary) => (
-              <SummaryCardNew key={summary.id} {...summary} />
+              <SummaryCard key={summary.id} {...summary} />
             ))}
           </div>
         )}

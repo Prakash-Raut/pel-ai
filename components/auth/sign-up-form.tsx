@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -31,7 +32,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import Link from "next/link";
 
 const formSchema = z.object({
   name: z.string(),
@@ -74,6 +74,23 @@ export function SignUpForm({
     );
   };
 
+  const handleGoogleSignUp = async () => {
+    await authClient.signIn.social(
+      {
+        provider: "google",
+      },
+      {
+        onSuccess: () => {
+          router.push("/dashboard");
+          toast.success("Sign up successful");
+        },
+        onError: (error) => {
+          toast.error(error.error.message || error.error.statusText);
+        },
+      },
+    );
+  };
+
   if (isPending) {
     return <Loader />;
   }
@@ -90,7 +107,11 @@ export function SignUpForm({
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FieldGroup>
                 <Field>
-                  <Button variant="outline" type="button">
+                  <Button
+                    variant="outline"
+                    type="button"
+                    onClick={handleGoogleSignUp}
+                  >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <title>Google</title>
                       <path

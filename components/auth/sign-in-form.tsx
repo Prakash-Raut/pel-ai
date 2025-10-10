@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -31,7 +32,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import Link from "next/link";
 
 const formSchema = z.object({
   email: z.email(),
@@ -80,7 +80,7 @@ export function SignInForm({
         provider: "google",
       },
       {
-        onSuccess: ({ data }) => {
+        onSuccess: () => {
           router.push("/dashboard");
           toast.success("Sign in successful");
         },

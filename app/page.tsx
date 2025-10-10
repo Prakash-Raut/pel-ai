@@ -1,5 +1,4 @@
 import CtaBanner from "@/components/home/cta-banner";
-import FAQ from "@/components/home/faq";
 import Features from "@/components/home/feature";
 import Footer from "@/components/home/footer";
 import Hero from "@/components/home/hero";
@@ -8,8 +7,16 @@ import Navbar from "@/components/home/navbar";
 import Pricing from "@/components/home/pricing";
 import ProductDemo from "@/components/home/product-demo";
 import Testimonial from "@/components/home/testimonials";
+import { getCurrentUser } from "@/lib/auth-util";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const user = await getCurrentUser();
+
+  if (user) {
+    redirect("/dashboard");
+  }
+
   return (
     <>
       <Navbar />
