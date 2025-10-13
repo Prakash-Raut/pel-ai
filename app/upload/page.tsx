@@ -1,33 +1,14 @@
-"use client";
+import { UploadForm } from "@/components/upload/upload-form";
+import { UploadHeader } from "@/components/upload/upload-header";
+import { getCurrentUser } from "@/lib/auth-util";
 
-import { uploadAndSummarize } from "@/actions/upload";
-import { authClient } from "@/lib/auth-client";
-import { UploadButton } from "@/lib/uploadthing";
-
-export default function UploadPage() {
-  const result = authClient.useSession();
-  const user = result.data?.user;
-
-  if (!user) {
-    return <div>Not found</div>;
-  }
-
-  const handleUploadComplete = async (res: any) => {
-    const file = res[0];
-    await uploadAndSummarize({
-      fileName: file.name,
-      fileUrl: file.ufsUrl,
-      userId: user.id,
-    });
-  };
+export default async function UploadPage() {
+  const user = await getCurrentUser();
 
   return (
-    <div className="container mx-auto px-4 max-w-5xl">
-      <UploadButton
-        endpoint="pdfUploader"
-        className="mt-4"
-        onClientUploadComplete={handleUploadComplete}
-      />
-    </div>
+    <section className="container mx-auto px-4 max-w-5xl min-h-screen">
+      <UploadHeader />
+      <UploadForm userId={user.id} />
+    </section>
   );
 }

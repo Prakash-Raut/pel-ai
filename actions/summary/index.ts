@@ -1,9 +1,15 @@
 "use server";
 
 import { db } from "@/db";
-import { pdfSummaries } from "@/db/schema/pdf-schema";
+import { pdfSummaries, type Summary } from "@/db/schema/pdf-schema";
 import { getCurrentUser } from "@/lib/auth-util";
 import { and, eq } from "drizzle-orm";
+
+type InputSummary = Omit<Summary, "id" | "createdAt" | "updatedAt" | "status">;
+
+export async function createSummary(summary: InputSummary) {
+  await db.insert(pdfSummaries).values(summary);
+}
 
 export async function getAllSummaries() {
   const user = await getCurrentUser();

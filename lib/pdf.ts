@@ -1,3 +1,5 @@
+"use server";
+
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
 
 export const fetchAndExtractPdfText = async (fileUrl: string) => {
@@ -37,7 +39,7 @@ export const fetchAndExtractPdfText = async (fileUrl: string) => {
   }
 };
 
-export const formatFileNameAsTitle = (fileName: string) => {
+export const formatFileNameAsTitle = async (fileName: string) => {
   const withoutExtension = fileName.split(".")[0];
 
   if (!withoutExtension) {

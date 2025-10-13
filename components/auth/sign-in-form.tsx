@@ -63,7 +63,7 @@ export function SignInForm({
         password: values.password,
       },
       {
-        onSuccess: ({ data }) => {
+        onSuccess: () => {
           router.push("/dashboard");
           toast.success("Sign in successful");
         },

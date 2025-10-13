@@ -48,15 +48,9 @@ const SectionTitle = ({ title }: { title: string }) => (
   <h2 className="font-bold text-2xl">{title}</h2>
 );
 
-const SummaryContent = ({
-  title,
-  points,
-}: {
-  title: string;
-  points: string[];
-}) => (
+const SummaryContent = ({ points }: { title: string; points: string[] }) => (
   <ul>
-    {points.map((point, index) => (
+    {points.map((point) => (
       <li key={point}>{point}</li>
     ))}
   </ul>
